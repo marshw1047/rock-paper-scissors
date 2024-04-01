@@ -1,7 +1,7 @@
 function getComputerChoice() {
     let compChoice =  Math.floor(Math.random() * (4 - 1) + 1);
     let result = "Something bad happened, try again"
-    console.log(compChoice)
+
     switch (compChoice) {
         case 1:
             return result = "rock";
@@ -25,7 +25,7 @@ function playRound(playerChoice, compChoice) {
     if ((pChoice === "rock" && cChoice === "scissors") ||
         (pChoice === "paper" && cChoice === "rock") ||
         (pChoice === "scissors" && cChoice === "paper")) {
-            result = "You win! " + pChoice + " beats " + cChoice + "!";
+            result = "You won! " + pChoice + " beats " + cChoice + "!";
         }
 
     else if ((cChoice === "rock" && pChoice === "scissors") ||
@@ -38,11 +38,21 @@ function playRound(playerChoice, compChoice) {
 }
 
 function playGame() {
-    let counter = 0;
-    while (counter < 5) {
+    let pScore = 0;
+    let cScore = 0
+    while ((pScore < 5) && (cScore < 5)) {
         let playerChoice = prompt("Please enter your choice of arms");
-        playRound(playerChoice, getComputerChoice());
+        let result = playRound(playerChoice, getComputerChoice());
+        
+        if (result.includes("won")) {
+            pScore++;
+        }
+        else if (result.includes("lost")) {
+            cScore++;
+        }
 
-        counter++;
+        console.log(result);
+        console.log("Player: " + pScore + " Computer: " + cScore);        
     }
+    console.log("Game complete! Final Score: Player: " + pScore + " Computer: " + cScore);
 }
