@@ -12,3 +12,37 @@ function getComputerChoice() {
     }
     return result;
 }
+
+function playRound(playerChoice, compChoice) {
+    let pChoice = playerChoice.toLowerCase();
+    let cChoice = compChoice;
+    let result = "Something didn't work";
+
+    if (pChoice === cChoice) {
+        result = "It's a tie!";
+    }
+
+    if ((pChoice === "rock" && cChoice === "scissors") ||
+        (pChoice === "paper" && cChoice === "rock") ||
+        (pChoice === "scissors" && cChoice === "paper")) {
+            result = "You win! " + pChoice + " beats " + cChoice + "!";
+        }
+
+    else if ((cChoice === "rock" && pChoice === "scissors") ||
+             (cChoice === "paper" && pChoice === "rock") ||
+             (cChoice === "scissors" && pChoice === "paper")) {
+                result = "You lost. " + cChoice + " beats " + pChoice;
+            }
+
+    return result;
+}
+
+function playGame() {
+    let counter = 0;
+    while (counter < 5) {
+        let playerChoice = prompt("Please enter your choice of arms");
+        playRound(playerChoice, getComputerChoice());
+
+        counter++;
+    }
+}
