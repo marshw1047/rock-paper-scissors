@@ -19,7 +19,7 @@ function playRound(playerChoice, compChoice) {
     let result = "Something didn't work";
 
     if (pChoice === cChoice) {
-        result = "It's a tie!";
+        result = "It's a tie! Y'all both chose " + compChoice;
     }
 
     if ((pChoice === "rock" && cChoice === "scissors") ||
