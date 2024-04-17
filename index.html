@@ -8,6 +8,55 @@
 
 </head>
 <body>
-    
+    <button id="rockBtn">Rock</button>
+    <button id="pprBtn">Paper</button>
+    <button id="scrsBtn">Scissors</button>
+    <div>
+        <p id="roundInfo">Results: </p>
+        <p>Player Score: <span id="pScore">0</span> 
+            Computer Score: <span id="cScore">0</span></p>
+    </div>
+    <script>
+        let mainStuff = document.querySelector("body");
+        let roundInfo = document.querySelector("#roundInfo");
+        let roundResult = document.createElement("p");
+        let pScoreDisplay = document.querySelector("#pScore");
+        let cScoreDisplay = document.querySelector("#cScore");
+
+        let pScore = 0;
+        let cScore = 0;
+
+        mainStuff.addEventListener("click", (event) => {
+            const userChoice = event.target.textContent;
+            roundResult.textContent = playRound(userChoice, getComputerChoice());
+            roundInfo.appendChild(roundResult);
+
+            if (roundResult.textContent.includes("won")) {
+                pScore++;
+                pScoreDisplay.textContent = pScore;
+            }
+            else if (roundResult.textContent.includes("lost")) {
+                cScore++;
+                cScoreDisplay.textContent = cScore;
+            }
+
+
+
+            if (pScore === 5 || cScore === 5) {
+                if (pScore === 5) {
+                    roundInfo.textContent = "Player wins!";
+                    resetGame();
+                }
+                else if (cScore === 5) {
+                    roundInfo.textContent = "Computer wins...next time";
+                    resetGame();
+                }
+            }
+
+
+        });
+
+
+    </script>
 </body>
 </html>

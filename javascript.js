@@ -33,26 +33,33 @@ function playRound(playerChoice, compChoice) {
              (cChoice === "scissors" && pChoice === "paper")) {
                 result = "You lost. " + cChoice + " beats " + pChoice;
             }
-
     return result;
 }
 
 function playGame() {
     let pScore = 0;
     let cScore = 0
-    while ((pScore < 5) && (cScore < 5)) {
-        let playerChoice = prompt("Please enter your choice of arms");
-        let result = playRound(playerChoice, getComputerChoice());
+    
+    let playerChoice = prompt("Please enter your choice of arms");
+    let result = playRound(playerChoice, getComputerChoice());
         
-        if (result.includes("won")) {
-            pScore++;
-        }
-        else if (result.includes("lost")) {
-            cScore++;
-        }
-
-        console.log(result);
-        console.log("Player: " + pScore + " Computer: " + cScore);        
+    if (result.includes("won")) {
+        pScore++;
     }
+    else if (result.includes("lost")) {
+        cScore++;
+    }
+
+    console.log(result);
+    console.log("Player: " + pScore + " Computer: " + cScore);        
+
     console.log("Game complete! Final Score: Player: " + pScore + " Computer: " + cScore);
+}
+
+function resetGame() {
+    pScore = 0;
+    cScore = 0;
+    pScoreDisplay.textContent = pScore;
+    cScoreDisplay.textContent = cScore;
+
 }
